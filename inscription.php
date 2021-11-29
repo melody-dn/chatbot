@@ -82,6 +82,9 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Inscription</button>
                 </div>   
+                <div class="form-group">
+                    <button type="submit" > <a href="connexion.php">Se connecter </a></button>
+                </div>   
             </form>
         </div>
         <style>
