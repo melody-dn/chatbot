@@ -1,44 +1,59 @@
-<?php
- require_once 'config.php'; // ajout connexion bdd 
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="author" content="NoS1gnal"/>
 
- if(isset($_POST['article_titre'], $_POST['article_contenu'])){
-     if(!empty($_POST['article_titre']) AND !empty($_POST['article_contenu'])){
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <title>Inscription</title>
+        </head>
+        <body>
+        <div class="login-form">
+            
+            <form action="redaction_traitement.php" method="POST">
+                <h2 class="text-center">Rédaction d'article</h2>       
 
-         $article_titre = htmlspecialchars($_POST['article_titre']);
-         $article_contenu = htmlspecialchars($_POST['article_contenu']);
+                <div class="form-group">
+                    <input type="text" name="titre" class="form-control" placeholder="titre" required="required">
+                </div>
+                <div class="form-group">
+                    <textarea name="contenu"  class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="date" name="date" class="form-control" placeholder="date du jour" required="required" >
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Poster l'article</button>
+                </div>   
+                 
+            </form>
+        </div>
+        <style>
+            .login-form {
+                width: 340px;
+                margin: 50px auto;
+            }
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+            .form-control, .btn {
+                min-height: 38px;
+                border-radius: 2px;
+            }
+            .btn {        
+                font-size: 15px;
+                font-weight: bold;
+            }
+        </style>
+        </body>
+</html>
 
-         $req = $bdd->prepare('INSERT INTO articles(titre, contenu, date) VALUES(:titre, :contenu, :date)');
-         $req->execute(array($article_titre, $article_contenu));
-       
-        
-        $message = 'Votre article a bien été posté';
-     }else{
-         $message = 'Veuillez remplir tous les champs';
- }
-}
- ?>
 
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Rédaction</title>
- </head>
- <body>
-     <form action="" method="POST">
-         <input type="text" name="article_titre" placeholder="titre">
-         <textarea name="article_contenu"  cols="30" rows="10"></textarea>
-         <input type="submit" value="Poster l'article">
-     </form>
-
-   <br/>
-
-   <?php
-   if(isset($message)) {
-       echo $message;} 
-           ?>
-     
- </body>
- </html>

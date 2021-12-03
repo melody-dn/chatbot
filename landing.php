@@ -70,6 +70,7 @@
                         
                
             </div>
+            <a href="redaction.php"><button>Ecrire un article</button></a>
         </div>  
         
        
