@@ -22,10 +22,10 @@
                     <textarea name="contenu"  class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="date" name="date" class="form-control" placeholder="date du jour" required="required" >
+                    <input type="date" name="date" class="form-control" required="required" >
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Poster l'article</button>
+                    <button type="submit" name="submit" class="btn btn-primary btn-block">Poster l'article</button>
                 </div>   
                  
             </form>
