@@ -7,12 +7,16 @@
 
     $article = $bdd->prepare('SELECT * FROM articles WHERE id_articles = ?');  //On réccupère tout ce qui est dans la table article et qui possède 'id_articles'
     $article->execute(array($getid));
-    $article = $article->fetch();
+
+
+    $commentaire = $bdd->prepare('SELECT * FROM commentaires WHERE articlesid = ? ');
+    $commentaire->execute(array($getid));
 
     if(isset($_POST['submit_commentaire'])){
         if(isset($_POST['auteur'], $_POST['commentaire'], $_POST['date']) AND !empty($_POST['auteur']) AND !empty($_POST['commentaire']) AND !empty($_POST['date'])){
             $auteur = htmlspecialchars($_POST['auteur']);
             $commentaire = htmlspecialchars($_POST['commentaire']);
+            $date = htmlspecialchars($_POST['date']);
             if(strlen($auteur) < 35) {
                 $ins = $bdd->prepare('INSERT INTO commentaires ( auteur, commentaire, articlesid, date) VALUES (?, ?, ?, ?)');
                 $ins->execute(array($auteur,$commentaire,$getid,$date));
@@ -35,21 +39,28 @@
   <p><?= $article['contenu'] ?></p>
 
   <br>
-  <br>
 
   <h2>Commentaires:</h2>
   <br>
   <form method="POST">
       <input type="text" name="auteur" placeholder="Votre pseudo"> <br>
-      <textarea name="commentaire" placeholder="Votre commentaire" id="" cols="30" rows="10"></textarea> <br>
+      <textarea name="commentaire" placeholder="Votre commentaire" cols="30" rows="10"></textarea> <br>
       <input type="date" name="date" ><br>
       <input type="submit" name="submit_commentaire" value="Poster le commentaire">
   </form>
   <?php if(isset($c_msg)){
-      echo "Message: " .$c_msg;
+      echo $c_msg;
   }
   ?>
+<br>
+  <?php
+  while($c = $commentaires->fetch()){ ?>
+  
+
+  <b><?= $c['auteur'] ?>:</b> <?= $c['commentaire'] ?> <br>
+  <?php } ?>
 
   <?php
-  
-  ?>
+
+?>
+ 
