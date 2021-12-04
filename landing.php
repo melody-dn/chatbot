@@ -46,9 +46,12 @@
     echo "<p>Contenu: ".$article["contenu"]."</p>";
     echo "<p>Auteur:".$article["id_articles"]. "</p>";
     echo "<p>Date:".$article["date"]. "</p>";
+    
 }
 
 ?>
+
+<a href="articles.php">Voir les commentaires</a>
           
 
                 <?php 

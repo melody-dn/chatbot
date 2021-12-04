@@ -7,10 +7,10 @@
 
     $article = $bdd->prepare('SELECT * FROM articles WHERE id_articles = ?');  //On réccupère tout ce qui est dans la table article et qui possède 'id_articles'
     $article->execute(array($getid));
+    $article = $article->fetch();
 
 
-    $commentaire = $bdd->prepare('SELECT * FROM commentaires WHERE articlesid = ? ');
-    $commentaire->execute(array($getid));
+   
 
     if(isset($_POST['submit_commentaire'])){
         if(isset($_POST['auteur'], $_POST['commentaire'], $_POST['date']) AND !empty($_POST['auteur']) AND !empty($_POST['commentaire']) AND !empty($_POST['date'])){
@@ -27,11 +27,12 @@
             }
 
         } else{
-                $c_msg = " Tous les champs doivent être complétés";
+                $c_msg = "Erreur: Tous les champs doivent être complétés";
             }
         }
-    }
-
+    
+        $commentaire = $bdd->prepare('SELECT * FROM commentaires WHERE articlesid = ? ');
+        $commentaire->execute(array($getid));
 
   ?>
 
@@ -47,20 +48,19 @@
       <textarea name="commentaire" placeholder="Votre commentaire" cols="30" rows="10"></textarea> <br>
       <input type="date" name="date" ><br>
       <input type="submit" name="submit_commentaire" value="Poster le commentaire">
+
+      
   </form>
   <?php if(isset($c_msg)){
       echo $c_msg;
   }
   ?>
 <br>
-  <?php
-  while($c = $commentaires->fetch()){ ?>
-  
-
-  <b><?= $c['auteur'] ?>:</b> <?= $c['commentaire'] ?> <br>
+  <?php while($c = $commentaire->fetch()) { ?>
+  <em><?= $c['date'] ?>➔</em> <b><?= $c['auteur'] ?> :</b> <?= $c['commentaire'] ?> <br>
   <?php } ?>
 
   <?php
-
+}
 ?>
  
