@@ -59,7 +59,7 @@
                 </div>   
             </form>
             <p class="text-center"><a href="inscription.php">Inscription</a></p>
-            <p class="text-center"><a href="landing.php">Visiteur</a></p>
+            <p class="text-center"><a href="accueil.php">Visiteur</a></p>
         </div>
         <style>
             .login-form {

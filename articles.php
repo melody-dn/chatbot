@@ -31,10 +31,12 @@
             }
         }
     
-        $commentaire = $bdd->prepare('SELECT * FROM commentaires WHERE articlesid = ? ');
+        $commentaire = $bdd->prepare('SELECT * FROM commentaires WHERE articlesid = ? ORDER BY id DESC ');
         $commentaire->execute(array($getid));
 
   ?>
+
+
 
   <h2>Article:</h2>
   <p><?= $article['contenu'] ?></p>
