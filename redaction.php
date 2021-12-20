@@ -10,6 +10,8 @@
             <title>Inscription</title>
         </head>
         <body>
+
+        <!-- Formulaire -->
         <div class="login-form">
             
             <form action="redaction_traitement.php" method="POST">

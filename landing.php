@@ -2,14 +2,7 @@
     session_start();
     require_once 'config.php'; // ajout connexion bdd 
    // si la session existe on redirige
-    if(isset($_SESSION['user'])){
-        echo "bonjour ". $_SESSION['login'];
-    }
 
-    if(!isset($_SESSION['user'])){
-        echo "bonjour";
-    }
-   
 
     $articles=getArticles($bdd);
 
@@ -58,47 +51,20 @@
             <h1>Articles:</h1> 
 
             <?php
+
+    //Affiche l'article et les données qui lui sont associées
             foreach ($articles as $article){ 
 	echo "<h2>Titre: ".$article["titre"]."<br></h2>  ";
     echo "<p>Contenu: ".$article["contenu"]."</p>";
     echo "<p>Auteur: proprietaires". "</p>";
     echo "<p>Date:".$article["date"]. "</p>";
-    if(isset($_SESSION['login'])){
-        echo "<a href='articles.php?id=".$article["id_articles"]. "'>Voir les commentaires</a>";
-    }
+    echo "<a href='articles.php?id=".$article["id_articles"]. "'>Voir les commentaires</a>";
     
 }
 
-?>
-
-<a href="articles.php">Voir les commentaires</a>
-          
-
-                <?php 
-                        if(isset($_GET['err'])){
-                            $err = htmlspecialchars($_GET['err']);
-                            switch($err){
-                                case 'current_password':
-                                    echo "<div class='alert alert-danger'>Le mot de passe actuel est incorrect</div>";
-                                break;
-
-                                case 'success_password':
-                                    echo "<div class='alert alert-success'>Le mot de passe a bien été modifié ! </div>";
-                                break; 
-                            }
-                        }
-                    ?>
-
-
-                        
-               
+?>       
             </div>
             
         </div>  
-        
-       
-        
-
-    
   </body>
 </html>

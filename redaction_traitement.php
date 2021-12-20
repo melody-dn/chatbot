@@ -7,6 +7,8 @@
         $contenu= $_POST['contenu'];
         $date = $_POST['date'];
 
+        //Si les catégories sont vides, les remplir avec les informations rentrés au préalable
+
         if (!empty($titre) && !empty($contenu)){
            
             $insert = "INSERT INTO articles(titre, contenu, date) VALUES('$titre', '$contenu', '$date')";

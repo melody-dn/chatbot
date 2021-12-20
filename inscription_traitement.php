@@ -12,8 +12,8 @@
         // On vérifie si l'utilisateur existe
         $check = $bdd->prepare('SELECT login, password FROM utilisateurs WHERE login = ?');
         $check->execute(array($login));
-        $data = $check->fetch();//On stock les données dans data
-        $row = $check->rowCount();//On vérifie s'il existe dans la table
+        $data = $check->fetch();
+        $row = $check->rowCount();
 
     
         // Si la requete renvoie un 0 alors l'utilisateur n'existe pas 

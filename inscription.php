@@ -7,15 +7,42 @@
 
             <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <style>
+            .login-form {
+                width: 340px;
+                margin: 50px auto;
+            }
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+            .form-control, .btn {
+                min-height: 38px;
+                border-radius: 2px;
+            }
+            .btn {        
+                font-size: 15px;
+                font-weight: bold;
+            }
+        </style>
             <title>Inscription</title>
         </head>
+        
         <body>
         <div class="login-form">
             <?php 
                 if(isset($_GET['reg_err'])) //S'il existe
                 {
                     $err = htmlspecialchars($_GET['reg_err']);
-      //Evite d'utiliser plein de of else
+      
+
+    //   Alertes liées à l'inscription
+    //Le switch évite d'utiliser plein de if else
                     switch($err)
                     {
                         case 'success':
@@ -66,6 +93,8 @@
                     }
                 }
                 ?>
+
+                <!-- Formulaire -->
             
             <form action="inscription_traitement.php" method="post">
                 <h2 class="text-center">Inscription</h2>       
@@ -87,28 +116,5 @@
                 </div>   
             </form>
         </div>
-        <style>
-            .login-form {
-                width: 340px;
-                margin: 50px auto;
-            }
-            .login-form form {
-                margin-bottom: 15px;
-                background: #f7f7f7;
-                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-                padding: 30px;
-            }
-            .login-form h2 {
-                margin: 0 0 15px;
-            }
-            .form-control, .btn {
-                min-height: 38px;
-                border-radius: 2px;
-            }
-            .btn {        
-                font-size: 15px;
-                font-weight: bold;
-            }
-        </style>
         </body>
 </html>

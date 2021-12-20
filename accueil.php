@@ -20,17 +20,15 @@
 <?php 
     session_start();
     
-    
-
     require_once 'config.php'; // ajout connexion bdd 
    // si la session existe on redirige
     if(isset($_SESSION['user'])){
         echo "bonjour ". $_SESSION['login'];
     }
 
-    if(!isset($_SESSION['user'])){
-        echo "bonjour visiteur ";
-    }
+    // if(!isset($_SESSION['user'])){
+    //     echo "bonjour visiteur ";
+    // }
    
 
     $articles=getArticles($bdd);
@@ -62,46 +60,26 @@
 
             <h1>Articles:</h1> 
 
+            <!-- Affiche l'article et ce qui lui est associé -->
             <?php
             foreach ($articles as $article){ 
 	echo "<h2>Titre: ".$article["titre"]."<br></h2>  ";
     echo "<p>Contenu: ".$article["contenu"]."</p>";
     echo "<p>Auteur: propriétaires". "</p>";
     echo "<p>Date:".$article["date"]. "</p>";
-    if(isset($_SESSION['login'])){
-        echo "<a href='articles.php?id=".$article["id_articles"]. "'>Voir les commentaires</a>";
-    }
+    echo "<a href='articles.php?id=".$article["id_articles"]. "'>Voir les commentaires</a><br><br>";
     
 }
 
-
 ?>
 
-
-          
-
+<!-- Si nous sommes connectés en tant que proprio, le bouton écrire est présent -->
                 <?php 
-                        if(isset($_GET['err'])){
-                            $err = htmlspecialchars($_GET['err']);
-                            switch($err){
-                                case 'current_password':
-                                    echo "<div class='alert alert-danger'>Le mot de passe actuel est incorrect</div>";
-                                break;
-
-                                case 'success_password':
-                                    echo "<div class='alert alert-success'>Le mot de passe a bien été modifié ! </div>";
-                                break; 
-                            }
-                        }
-
                         if(isset ($_SESSION) && $_SESSION['proprio']==1){
                            echo' <a href="redaction.php"><button>Ecrire un article</button></a>';
                         }
                     ?>
 
-
-                        
-               
             </div>
            
         </div>  
